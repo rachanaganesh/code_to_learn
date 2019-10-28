@@ -1,0 +1,18 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int sum1 , sum2 ;
+        int length = nums.length;
+        for(int i: nums){
+            sum1 = nums[i];
+            sum2 = nums[length];
+            //two pointer approach which yields better runtime than brute force
+            //could have used hashmap, tried using without any extra space.
+            if(target == sum1+sum2){
+                return new[] {i,length};
+            } else {
+                i++;
+                length--;
+            }
+        }
+    }
+}
