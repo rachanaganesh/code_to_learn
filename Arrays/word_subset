@@ -1,0 +1,40 @@
+class Solution {
+    public List<String> wordSubsets(String[] A, String[] B) {
+        List<String> result = new ArrayList<String>();  
+        int[] count = new int[26], temp;
+        int i;
+        //loop through each string in "B" and get the no of occurences of each alphabet
+        for(String b : B) {
+               temp = getCount(b);
+            for( i =0; i<26;i++){
+
+                count[i] = Math.max(count[i], temp[i]);
+            }
+            
+        }
+        //loop through "A" and and return strings that match the alphabet count stored in count[i]
+         for(String a : A){
+            temp = getCount(a);
+         
+
+             for( i = 0; i < 26; i++)
+                 if(temp[i] < count[i])
+                     break;
+                 
+                 if(i == 26){
+                     result.add(a);
+                 } 
+             
+        }
+        
+    return result;
+}
+    public int[] getCount(String word) {
+            int[] count = new int[26];
+            //method to store the count of the charater in the string "word"
+            for(char ch : word.toCharArray()) {
+                count[ch - 'a']++;
+            }
+            return count;
+        }
+    }
