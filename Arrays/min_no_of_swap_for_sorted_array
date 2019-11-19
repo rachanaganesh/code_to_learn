@@ -1,0 +1,27 @@
+Class Solution{
+
+    public int minSwap(int[] arr){
+            int length = arr.length, swap = 0;
+            boolean[] visited = new int[length];
+           
+            for(int i = 0; i <= length; i++) {
+                int j = i, cycle = 0;
+                while(!visited[j]){
+                    visited[j] = true;
+                    j = arr[j] - 1;
+                    cycle++;
+                }
+                if(cycle!=0) {
+                    swap +=cycle-1;
+                }
+            }
+        return swap;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 5, 4, 3, 2};
+        Solution sol = new Solution();
+        sol.minSwap(arr);
+
+    }
+}
