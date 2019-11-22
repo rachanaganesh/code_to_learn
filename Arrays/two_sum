@@ -1,0 +1,33 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+    // Sol 1: Using Iterative approach (could have used two for loops too).
+    int  j =nums.length-1;
+        for(int k =0;k<nums.length;k++){
+        int i =0 ;
+        while(i<j) {
+            if(nums[i] + nums[j] == target) {
+                return new int[]{i,j};
+            } 
+         i++;   
+        }
+            j--;
+        }
+        return new int[]{};
+        
+      //Sol 2: Using hashmap my run time comes to O(n).
+        //while adding two nums of same val to hashmap we should be sure of returning the
+        //correct index value, as indexes might get updated( Happened to me when I added all
+        //val first to hashmap and iterated over it.
+        
+      Map<Integer, Integer> map = new HashMap<>();
+      for(int i = 0; i < nums.length; i++) {
+            int ans = target - nums[i];
+            if(map.containsKey(ans)) {
+                int val = map.get(ans);
+                return new int[] {val, i};
+            }
+            map.put(nums[i], i);
+      }
+        return new int[] {};
+    }
+}
