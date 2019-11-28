@@ -1,0 +1,35 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        // Commented code worked for just half testcases.
+        
+//         List<List<Integer>> list = new ArrayList<List<Integer>>();
+//         Set<List<Integer>> set = new HashSet<List<Integer>>(list);
+
+//         for(int i=0;i<=nums.length-2;i++){
+//             for(int j=2;j<nums.length;j++){
+//             if(nums[i] + nums[j-1] + nums[j] ==0){
+//              if(!set.contains(Arrays.asList(nums[i], nums[j-1], nums[j]))){
+//              List<Integer> tmp = Arrays.asList(nums[i], nums[j-1], nums[j]);
+//                     list.add(tmp);
+//             } 
+//          }
+//         }
+//         }
+//              return list;
+        
+        Set<List<Integer>> set = new HashSet<List<Integer>>();
+        Arrays.sort(nums);
+        for(int i=0;i<=nums.length-2;i++){
+            int j = i+1;
+            int k = nums.length-1;
+            while(j<k){
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum == 0) {
+                    set.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
+                } else if(sum > 0) k--;
+                else if( sum <0) j++;
+            }
+         }
+             return new ArrayList<>(set);
+    }
+}
